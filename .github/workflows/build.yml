@@ -21,3 +21,18 @@ jobs:
       with:
         name: dist
         path: dist
+    - name: Get workflow run URL
+      id: get_url
+      run: echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    - name: Set build status
+      id: build_status
+      run: |
+        if [ ${{ job.status }} == "success" ]; then
+          echo "Build succeeded"
+        else
+          echo "Build failed"
+        fi
+    - name: Send notification
+      run: |
+        echo "Build Status: ${{ steps.build_status.outputs.stdout }}"
+        echo "Build URL: ${{ steps.get_url.outputs.stdout }}"
