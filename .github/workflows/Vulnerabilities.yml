@@ -16,7 +16,9 @@ jobs:
         run: sudo apt-get install jq -y
       - name: Install dependencies
         run: npm install
-      - name: Check for vulnerabilities
+      - name: Check for vulnerabilities with electronegativity
+        run: npm run electronegativity
+      - name: Check for vulnerabilities with npm audit
         run: |
           audit_result=$(npm audit --json || true)
           vulnerabilities=$(echo "$audit_result" | jq -r '.vulnerabilities | to_entries[] | select(.value.severity == "high" or .value.severity == "critical") | "\(.key) (\(.value.severity))"')
