@@ -24,10 +24,13 @@ jobs:
       run: yarn run clean
     - name: Install dependencies
       run: yarn install
-    - name: Build Dist
-      run: npm run build
     - name: Electron Build and Package
       run: yarn run package
+    - name: Upload Package
+      uses: actions/upload-artifact@v4
+      with:
+        name: package
+        path: package
     - name: Upload Dist
       uses: actions/upload-artifact@v4
       with:
