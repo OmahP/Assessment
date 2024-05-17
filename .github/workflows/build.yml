@@ -24,6 +24,8 @@ jobs:
       run: yarn run clean
     - name: Install dependencies
       run: yarn install
+    - name: Build Dist
+      run: npm run build
     - name: Electron Build and Package
       run: yarn run package
     - name: Upload Dist
