@@ -4,7 +4,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -17,9 +17,9 @@ jobs:
         sudo dpkg --add-architecture i386
         sudo apt update
         sudo apt install -y wine64 wine32
-    - name: Install Yarn
-      run: |
-        npm install -y -g yarn
+    # - name: Install Yarn
+    #   run: |
+    #     npm install -y -g yarn
     - name: Run Clean
       run: yarn run clean
     - name: Install dependencies
